@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Home() {
-    const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState([]);
 
 
   useEffect(() => {
@@ -12,22 +12,26 @@ export default function Home() {
         return response.json();
       })
       .then((data) => {
-        setArticles( data );
+        setArticles(data);
       });
-  }, []);   
+  }, []);
 
-  console.log ({articles});
- 
+  console.log({ articles });
+
   return (
-  <div className="">
-    {articles.map((item) => (
-      <div key={item.id}>
-        <Link href={item.url} target="_blank">
-          {item.title}
-        </Link>
-      </div>    
-    ))}
-    <button className="btn">button</button>
-  </div>
+    <div className="container">
+      <div className="grid grid-cols-3 gap-4 ">
+        {articles.map((item) => (
+          <div className="card-body">
+            <div key={item.id} className="shadow-lg card bg-base-100">
+              <Link href={item.url} target="_blank">
+                {item.title}
+              </Link>
+            </div>
+          </div>  
+        ))}
+        <button className="btn btn-active ">button</button>
+      </div>
+    </div>
   );
 }
