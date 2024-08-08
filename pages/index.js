@@ -18,23 +18,19 @@ export default function Home() {
       loadMore();
     }, []);
 
-  function loadMore() {
+   async function loadMore() {
      setLoading(true);
+   const response = await fetch (`https://dev.to/api/articles?username=dumebii&page=${page}&per_page=${pageSize}`)
+   const newArticles = await response.json();
 
-    fetch (`https://dev.to/api/articles?username=dumebii&page=${page}&per_page=${pageSize}`)
-     
-      .then((response) => {
-        return response.json();
-      })
-      .then((newArticles) => {
-        const updatedArticles = articles.concat(newArticles);
+   const updatedArticles = articles.concat(newArticles);
+
         setArticles(updatedArticles);
-        setPage(page + 1);
+        setPage ( page +1 );
         if (newArticles.length < pageSize) {
-          setEnded(true);
+          setEnded (true);
         }
         setLoading(false);
-      });
   }
 
   return (
@@ -45,7 +41,7 @@ export default function Home() {
             <div className="card-body gap-3">
               <Image src={item.social_image} width={500} height={500} className="aspect-video bg-slate-50" />
               <div className="badge badge-primary badge-outline"> <p>{item.tag_list[0]}</p></div>
-              <Link href={item.url} target="_blank">
+              <Link href={item.path} >
                 {item.title}
               </Link>
               <div className="flex gap-4 items-center">
