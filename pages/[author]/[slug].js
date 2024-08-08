@@ -7,8 +7,6 @@ import parse from 'html-react-parser';
 import { useRouter } from 'next/router'
 
 
-
-
 dayjs.extend(relativeTime);
 
 const pageSize = 6;
@@ -18,8 +16,6 @@ export default function Home() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const { author, slug } = router.query;
-
-
 
     useEffect(() => {
         if (router.isReady) {
