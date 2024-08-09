@@ -11,28 +11,28 @@ const pageSize = 6;
 export default function Home() {
   const [articles, setArticles] = useState([]);
   const [page, setPage] = useState(1);
-  const [ended, setEnded] = useState (false);
-  const [loading, setLoading] = useState (false);
+  const [ended, setEnded] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // const = [{item.tag_list}]
 
-    useEffect(() => {
-      loadMore();
-    }, []);
+  useEffect(() => {
+    loadMore();
+  }, []);
 
-   async function loadMore() {
-     setLoading(true);
-   const response = await fetch (`https://dev.to/api/articles?username=dumebii&page=${page}&per_page=${pageSize}`)
-   const newArticles = await response.json();
+  async function loadMore() {
+    setLoading(true);
+    const response = await fetch(`https://dev.to/api/articles?username=dumebii&page=${page}&per_page=${pageSize}`)
+    const newArticles = await response.json();
 
-   const updatedArticles = articles.concat(newArticles);
+    const updatedArticles = articles.concat(newArticles);
 
-        setArticles(updatedArticles);
-        setPage ( page +1 );
-        if (newArticles.length < pageSize) {
-          setEnded (true);
-        }
-        setLoading(false);
+    setArticles(updatedArticles);
+    setPage(page + 1);
+    if (newArticles.length < pageSize) {
+      setEnded(true);
+    }
+    setLoading(false);
   }
 
   return (
@@ -49,7 +49,7 @@ export default function Home() {
               <div className="flex gap-4 items-center">
                 <Image src={item.user.profile_image_90} width={60} height={60} className="rounded-full" />
                 <div> {item.user.name}</div>
-                <div> {dayjs(item.published_at).fromNow() }</div>
+                <div> {dayjs(item.published_at).fromNow()}</div>
               </div>
             </div>
           </div>
@@ -60,10 +60,10 @@ export default function Home() {
         !ended && (
           <div className="py-16 text-center">
             <button disabled={loading} className="btn btn-outline btn-success btn-active text-center " onClick={loadMore} >
-              {loading &&  <span className="loading loading-spinner loading-sm"></span>
+              {loading && <span className="loading loading-spinner loading-sm"></span>
               }load more</button>
-           
-          </div>          
+
+          </div>
         )
       }
     </div>
