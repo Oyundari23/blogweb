@@ -65,10 +65,11 @@ export default function Page() {
 
     return (
         <div>
-            <div className="flex gap-4">
+            <div> <img src="/Images/Header.png" alt="Header-Image" className=" rounded-lg"/></div>
+            <div className="flex gap-4 mb-8 mt-8">
                 {tags.map((tag) => (
                     <div key={tag.value} className={`cursor-pointer font-bold hover:text-orange-500 ${selectedCategory === tag.value ? "text-orange-600" : ""}`} onClick={() => setselectedCategory(tag.value)}>
-                        {tag.name}
+                        {tag.name} 
                     </div>
                 ))}
             </div>

@@ -11,7 +11,7 @@ const navs = [
         text: "Home",       
     },
     {
-        Link: "/blog",
+        Link: "/",
         text: "Blog",       
     },
     {
@@ -25,13 +25,19 @@ export function Header() {
         <div className="flex gap-5 items-center mb-8">
            <div className="flex-1"> < Image src="/Images/Logo.png" width={158} height={36} className="bg-slate-50 rounded-xl py-2 px-2"/></div> 
             <div className="flex gap-[40px] flex-1">
-                {navs.map((item) => (
-                    <div>
-                        {item.link}
-                        {item.text}
-                    </div>
+             
                 
-                ))}
+                     <Link href={"/"} className="hidden lg:block dark:hover:text-white">
+            Home
+          </Link>
+          <Link href={"/"} className="hidden lg:block">
+            Blog
+          </Link>
+          <Link href={"/Contact"} className="hidden lg:block">
+            Contact
+          </Link>
+              
+
             </div>
             <div className="bg-slate-600 w-60 h-8 px-4 py-1 h-8 rounded-lg flex items-center gap-10">
                 <div>search</div>
